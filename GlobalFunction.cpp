@@ -1,5 +1,5 @@
 // Last edit:
-// 14/12   14:00
+// 17/12
 
 #include "header\dirent.h"
 #include <iostream>

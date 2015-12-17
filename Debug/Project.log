@@ -1,9 +1,39 @@
-﻿Build started 17/12/2015 12:54:27.
-     1>Project "C:\Users\sagis\Desktop\Sagi\Google Drive\סמסטר 9\פרויקט גמר\Sresidue\Project.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         Project.vcxproj -> C:\Users\sagis\Desktop\Sagi\Google Drive\סמסטר 9\פרויקט גמר\Sresidue\Debug\Project.exe
-     1>Done Building Project "C:\Users\sagis\Desktop\Sagi\Google Drive\סמסטר 9\פרויקט גמר\Sresidue\Project.vcxproj" (Build target(s)).
+﻿Build started 17/12/2015 16:18:16.
+     1>Project "C:\Sresidue\Final-Project\Project.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CartesianGeometry.cpp CartesianPoint.cpp Helanal.cpp Helix.cpp Main.cpp Matrix.cpp Msa.cpp GlobalFunction.cpp pssm.cpp BaseCartesianPoint.cpp
+         BaseCartesianPoint.cpp
+         pssm.cpp
+         GlobalFunction.cpp
+         Msa.cpp
+         Matrix.cpp
+         Main.cpp
+         Helix.cpp
+         Helanal.cpp
+         CartesianPoint.cpp
+         CartesianGeometry.cpp
+         Generating Code...
+     1>c:\sresidue\final-project\helix.cpp(105): warning C4715: 'Helix::getHleixStruct' : not all control paths return a value
+     1>c:\sresidue\final-project\matrix.cpp(132): warning C4715: 'Matrix::getij' : not all control paths return a value
+     1>c:\sresidue\final-project\msa.cpp(140): warning C4715: 'msa_matrix::getij' : not all control paths return a value
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\Project.res" Project.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Sresidue\Final-Project\Debug\Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Sresidue\Final-Project\Debug\Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Sresidue\Final-Project\Debug\Project.lib" /MACHINE:X86 Debug\Project.res
+         Debug\CartesianGeometry.obj
+         Debug\CartesianPoint.obj
+         Debug\Helanal.obj
+         Debug\Helix.obj
+         Debug\Main.obj
+         Debug\Matrix.obj
+         Debug\Msa.obj
+         Debug\GlobalFunction.obj
+         Debug\pssm.obj
+         Debug\BaseCartesianPoint.obj
+         LINK : C:\Sresidue\Final-Project\Debug\Project.exe not found or not built by the last incremental link; performing full link
+         Project.vcxproj -> C:\Sresidue\Final-Project\Debug\Project.exe
+     1>Done Building Project "C:\Sresidue\Final-Project\Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.08
+Time Elapsed 00:00:06.22
