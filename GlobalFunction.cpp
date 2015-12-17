@@ -180,8 +180,6 @@ void GlobalFunction::SmallAminoAcidLists()
     string str, buffer;
     char ch1, ch2, ch3, ch4;
     int cnt = 0, length = 0;
-    bool flag = false;
-    int iiii = 0;
     OpenFastaFile(readFile);				    // open the fasta file with the pointer readFile
     fout2.open("2 Small AA List.txt", ios::out); // open the output file with the pointer fout2
     fout3.open("3 Small AA List.txt", ios::out); // open the output file with the pointer fout3
@@ -189,7 +187,6 @@ void GlobalFunction::SmallAminoAcidLists()
 
     while (readFile.get(ch1))				   // read the file till the end of file
     {
-	   printf("%d ", iiii++);
 	   str.clear();
 	   if (ch1 == '>')					   // skip the line of data which start with '>'
 		  getline(readFile, buffer);
@@ -213,22 +210,15 @@ void GlobalFunction::SmallAminoAcidLists()
 						  length = 4;
 						  str += ch4;
 					   }
-					   else flag = true;
 				    }
 				    else break;	    // end of file
 				}
-				else flag = true;
 			 }
 			 else break;	    // end of file
 		  }
-		  else flag = true;
 	   }
 	   else break;	    // end of file
-	   /*if (flag)
-	   {
-	   readFile.seekg(-1, ios::cur);	   // go back the character which have been read in vain
-	   flag = false;
-	   }*/
+
 	   if (length == 2)
 		  vector2.push_back(str);
 	   else if (length == 3)
@@ -237,6 +227,7 @@ void GlobalFunction::SmallAminoAcidLists()
 		  vector4.push_back(str);
 	   length = 0;
     } // end while
+
     copy(vector2.begin(), vector2.end(), ostream_iterator<string>(fout2, "\n"));
     copy(vector3.begin(), vector3.end(), ostream_iterator<string>(fout3, "\n"));
     copy(vector4.begin(), vector4.end(), ostream_iterator<string>(fout4, "\n"));
