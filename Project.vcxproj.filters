@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Helix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Msa.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalFunction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pssm.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Helanal.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CartesianGeometry.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CartesianPoint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCartesianPoint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="header\GlobalFunction.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Array.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\BaseCartesianPoint.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\CartesianGeometry.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\CartesianPoint.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\dirent.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\func.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Hash.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Helanal.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Helix.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Matrix.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Msa.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\pssm.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Real.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="header\resource.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="header">
+      <UniqueIdentifier>{c322c640-9e3e-4b0c-93d9-c53373295a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{250ac244-23b3-4025-a4e4-0da71da56e32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{40ebf763-6ff4-49b9-9a92-ac1b670721fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project.rc" />
+  </ItemGroup>
+</Project>
