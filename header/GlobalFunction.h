@@ -32,6 +32,8 @@ public:
     void ReadProteinsFromFasta();
     void ProteinsCounter();
     void SmallAminoAcidLists();
+    string GlobalFunction::WodakTableValues(char ch);
+    void GlobalFunction::FindWodakInFasta();
 
     vector<string> split(const string& s, const string& delim, bool keep_empty = true);
     void openClusterCSV(ifstream& Cluster, int i);

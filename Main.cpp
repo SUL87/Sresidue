@@ -67,6 +67,8 @@ int main(void)
     // Make list of all the small amino acid (G,A,S,T,C) in the fasta file
     globalFunc.SmallAminoAcidLists();
 
+	globalFunc.FindWodakInFasta();
+
     /*
     ofstream errorLog;
     errorLog = globalFunc.creat_file_format_txt("errorLog.txt");
@@ -299,6 +301,7 @@ int main(void)
     cout << "**                                                              **" << endl;
     cout << "**   All the output files are in the program folder.            **" << endl;
     cout << "******************************************************************" << endl;
+    cout << "Hit any key to exit..." << endl;
     getchar();
     return 0;
 }

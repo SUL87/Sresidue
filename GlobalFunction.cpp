@@ -234,6 +234,90 @@ void GlobalFunction::SmallAminoAcidLists()
     readFile.close();
 }
 
+void GlobalFunction::FindWodakInFasta()
+{
+    ifstream readFile;
+    ofstream outFile("Fasta to Wodak.txt");
+    string string, num;
+    vector<int> result;
+
+    OpenFastaFile(readFile);
+    if (readFile.is_open())
+    {
+	   while (getline(readFile, string))
+	   {
+		  if (string[0] == '>')
+			 {
+				outFile << "\n\n" << string << "\n";
+				continue;
+			 }
+		  if (string[0] == 10)	 // if the next char is Line Feed (Enter) - skip it
+			 outFile << "\n\n";
+		  for (int i = 0; i < string.length(); i++)
+		  {
+			 num = WodakTableValues(string[i]);
+			 if (num != "0")
+			 {
+				outFile << num << ",";
+				//result.push_back(N);
+			 }
+		  }
+		  //copy(result.begin(), result.end(), ostream_iterator<int>(outFile, "\n"));
+	   }
+	   readFile.close();
+	   outFile.close();
+    }
+    else cout << "Unable to open fasta file.";
+}
+string GlobalFunction::WodakTableValues(char ch)
+{
+    switch (ch)
+    {
+    case 'A':	return "316"; //Ala
+	   break;
+    case 'R':	return "9"; //Arg
+	   break;
+    case 'N':	return "27"; //Asn
+	   break;
+    case 'D':	return "30"; //Aspr
+	   break;
+    case 'C':	return "34";  //Cysh
+	   break;
+    case 'Q':	return "12"; //Gln
+	   break;
+    case 'E':	return "7"; //Glu
+	   break;
+    case 'G':	return "239"; //Gly
+	   break;
+    case 'H':	return "22"; //His
+	   break;
+    case 'I':	return "212"; //Ile
+	   break;
+    case 'L':	return "226"; //Leu
+	   break;
+    case 'K':	return "4"; //Lys
+	   break;
+    case 'M':	return "56"; //Met
+	   break;
+    case 'F':	return "84"; //Phe
+	   break;
+    case 'P':	return "25"; //Pro
+	   break;
+    case 'S':	return "109"; //Ser
+	   break;
+    case 'T':	return "66";  //Thr
+	   break;
+    case 'W':	return "27"; //Trp
+	   break;
+    case 'Y':	return "27";  //Tyr
+	   break;
+    case 'V':	return "308";  //Val
+	   break;
+    default:	return "0";
+	   break;
+    }
+}
+
 void GlobalFunction::print_array(ofstream& myFile, vector<double>& vec)
 {
     for (size_t i = 0; i < vec.size(); i++)
