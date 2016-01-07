@@ -1,5 +1,4 @@
-// Last edit:
-// 17/12
+// 6.1.16
 
 #include "header\dirent.h"
 #include <iostream>
@@ -22,7 +21,7 @@ void GlobalFunction::GetFilesNamesFromFolder(char* path, vector<string>& filenam
 {
     struct dirent *dp;
     DIR *fd;
-    ofstream pdbList("pdb list.txt");
+    ofstream pdbList("PDB List.txt");
     int i = 0;
 
     if ((fd = opendir(path)) == NULL)
@@ -117,7 +116,7 @@ void GlobalFunction::ReadProteinsFromFasta()
 {
     ifstream readFile;				// readFile is a pointer to the source fasta file
     ofstream fout;	    				// fout is a pointer to the Proteins Names file (output file)
-    char ch, line[5];
+    char ch, string[5];
     int i = 1;
     bool flag = true;
 
@@ -127,23 +126,24 @@ void GlobalFunction::ReadProteinsFromFasta()
 
     fout.open("Proteins Names.txt", ios::out); // open the output file with the pointer fout
 
-    while (readFile.get(ch))
+    while (readFile.get(ch))			// read char till the end of file
     {
 	   if (ch == '>')				// the name of the protein comes after '>'
-	   if (flag == true)			// there is another '>' in the paragraph, so we use a flag to avoid it
-	   {
-		  readFile.get(ch);		// avoid the digit before the protein name
-		  readFile.get(line, 4);	// copy the protein name: 3 chars for the name + 1 char for '\0'
-		  fout << line << endl;	// print the protein name in the output file ("Proteins Names")
-		  flag = false;
-	   }
-	   else
-		  flag = true;
+		  if (flag == true)			// there is another '>' in the paragraph, so we use a flag to avoid it
+		  {
+			 //readFile.get(ch);		// avoid the digit before the protein name
+			 //readFile.get(line, 4);	// copy the protein name: 3 chars for the name + 1 char for '\0'
+			 readFile.get(string, 5);	// copy the protein name: 4 chars for the name + 1 char for '\0'
+			 fout << string << endl;	// print the protein name in the output file ("Proteins Names")
+			 flag = false;
+		  }
+		  else
+			 flag = true;
     }
     readFile.close();
 }
 
-// Count the number of proteins in the file 'Proteins Names without duplicates.txt'
+// Count the number of proteins in the file 'Proteins Names.txt' which has the names from the fasta file
 void GlobalFunction::ProteinsCounter()
 {
     ifstream fin("Proteins Names.txt");
@@ -175,11 +175,11 @@ void GlobalFunction::ProteinsCounter()
 void GlobalFunction::SmallAminoAcidLists()
 {
     ifstream readFile;					   // readFile is a pointer to the source fasta file
-    ofstream fout2, fout3, fout4;	    		   // fout is a pointer to the Proteins Names file (output file)
+    ofstream fout2, fout3, fout4;	    		   // fout2, fout3, fout4 are pointers to the Small Amino Acid Lists file (output file)
     vector<string> vector2, vector3, vector4;
-    string str, buffer;
-    char ch1, ch2, ch3, ch4;
-    int cnt = 0, length = 0;
+    string str, proteinName, line;
+    char subunit, ch1, ch2, ch3, ch4;
+    int cnt = 0, length = 0, position = 0;
     OpenFastaFile(readFile);				    // open the fasta file with the pointer readFile
     fout2.open("2 Small AA List.txt", ios::out); // open the output file with the pointer fout2
     fout3.open("3 Small AA List.txt", ios::out); // open the output file with the pointer fout3
@@ -189,48 +189,82 @@ void GlobalFunction::SmallAminoAcidLists()
     {
 	   str.clear();
 	   if (ch1 == '>')					   // skip the line of data which start with '>'
-		  getline(readFile, buffer);
-	   if (ch1 == 'G' || ch1 == 'A' || ch1 == 'S' || ch1 == 'T' || ch1 == 'C')
-	   if (readFile.get(ch2))
 	   {
-		  if (ch2 == 'G' || ch2 == 'A' || ch2 == 'S' || ch2 == 'T' || ch2 == 'C')
+		  position = 0;
+		  proteinName.clear();
+		  for (int i = 0; i < 4; i++)
 		  {
-			 length = 2;
-			 str += ch1; str += ch2;
-			 if (readFile.get(ch3))
-			 {
-				if (ch3 == 'G' || ch3 == 'A' || ch3 == 'S' || ch3 == 'T' || ch3 == 'C')
-				{
-				    length = 3;
-				    str += ch3;
-				    if (readFile.get(ch4))
-				    {
-					   if (ch4 == 'G' || ch4 == 'A' || ch4 == 'S' || ch4 == 'T' || ch4 == 'C')
-					   {
-						  length = 4;
-						  str += ch4;
-					   }
-				    }
-				    else break;	    // end of file
-				}
-			 }
-			 else break;	    // end of file
+			 readFile.get(ch1);
+			 proteinName += ch1;
 		  }
+		  readFile.get(subunit);
+		  getline(readFile, line);		   // skip the rest of the line
+		  continue;					   // skip the rest of the loop
 	   }
+	   if (ch1 != '\n')
+		  position++;
+	   if (ch1 == 'G' || ch1 == 'A' || ch1 == 'S' || ch1 == 'T' || ch1 == 'C')
+		  if (readFile.get(ch2))
+		  {
+			 if (ch2 != '\n')
+				position++;
+			 if (ch2 == 'G' || ch2 == 'A' || ch2 == 'S' || ch2 == 'T' || ch2 == 'C')
+			 {
+				length = 2;
+				str += ch1; str += ch2;
+				if (readFile.get(ch3))
+				{
+				    if (ch3 != '\n')
+					   position++;
+				    if (ch3 == 'G' || ch3 == 'A' || ch3 == 'S' || ch3 == 'T' || ch3 == 'C')
+				    {
+					   length = 3;
+					   str += ch3;
+					   if (readFile.get(ch4))
+					   {
+						  if (ch4 != '\n')
+							 position++;
+						  if (ch4 == 'G' || ch4 == 'A' || ch4 == 'S' || ch4 == 'T' || ch4 == 'C')
+						  {
+							 length = 4;
+							 str += ch4;
+						  }
+					   }
+					   else break;	    // end of file
+				    }
+				}
+				else break;	    // end of file
+			 }
+		  }
 	   else break;	    // end of file
 
 	   if (length == 2)
-		  vector2.push_back(str);
+	   {
+		  fout2 << str << '\t';
+		  fout2 << proteinName << '\t';
+		  fout2 << subunit << '\t';
+		  fout2 << position-2 << '\t';
+		  fout2 << '\n';
+	   }
 	   else if (length == 3)
-		  vector3.push_back(str);
+	   {
+		  fout3 << str << '\t';
+		  fout3 << proteinName << '\t';
+		  fout3 << subunit << '\t';
+		  fout3 << position-3 << '\t';
+		  fout3 << '\n';
+	   }
 	   else if (length == 4)
-		  vector4.push_back(str);
-	   length = 0;
+	   {
+		  fout4 << str << '\t';
+		  fout4 << proteinName << '\t';
+		  fout4 << subunit << '\t';
+		  fout4 << position-3 << '\t';    // sequences of length of 4 aa don't increase the position, that's why the -3
+		  fout4 << '\n';
+	   }
+	   length = 0;				 // initialize length
     } // end while
 
-    copy(vector2.begin(), vector2.end(), ostream_iterator<string>(fout2, "\n"));
-    copy(vector3.begin(), vector3.end(), ostream_iterator<string>(fout3, "\n"));
-    copy(vector4.begin(), vector4.end(), ostream_iterator<string>(fout4, "\n"));
     readFile.close();
 }
 
